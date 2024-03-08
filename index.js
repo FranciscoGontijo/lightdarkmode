@@ -1,3 +1,5 @@
+let darkMode = localStorage.getItem('darkMode');
+
 const toggleButton = document.querySelector('#dark-mode-toggle');
 
 const enableDarkMode = () => {
@@ -14,12 +16,16 @@ const disableDarkMode = () => {
     localStorage.setItem('darkMode', 'disabled');
 };
 
+//Stay in dark mode if local storage says it is enabled
+if (darkMode === 'enabled') {
+    enableDarkMode();
+};
+
 toggleButton.addEventListener('click', () => {
-    if (localStorage.getItem('darkMode') !== 'enabled') {
+    darkMode = localStorage.getItem('darkMode')
+    if (darkMode !== 'enabled') {
         enableDarkMode();
-        console.log(darkMode);
     } else {
         disableDarkMode();
-        console.log(darkMode);
     }
 });
